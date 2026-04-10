@@ -3,7 +3,6 @@ pipeline {
 
 	environment {
 		DOCKER_IMAGE = 'hello-world-python:latest' 
-		image name
 	}
 
 	stages {
@@ -17,7 +16,7 @@ pipeline {
 			steps {
 				script {
 					if (fileExists('Dockerfile')) {
-						sh "docker build -t $(env.DOCKER_IMAGE) ."
+						sh "docker build -t ${env.DOCKER_IMAGE} ."
 					} else {
 						error "Dockerfile not found in the workspace. Please create one for your application."
 					}
@@ -27,7 +26,7 @@ pipeline {
 	
 		stage('Docker Run (optional)') {
 			steps {
-				sh "docker run --rm $(env.DOCKER_IMAGE)"
+				sh "docker run --rm ${env.DOCKER_IMAGE}"
 			}
 		}
 	}
